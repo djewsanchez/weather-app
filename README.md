@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+## 🧪 Testing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project includes comprehensive unit tests with excellent coverage.
 
-Currently, two official plugins are available:
+### Run Tests
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Run tests in watch mode
+npm test
 
-## React Compiler
+# Run tests once
+npm run test -- --run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Run tests with UI
+npm run test:ui
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Generate coverage report
+npm run test:coverage
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Test Coverage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The test suite covers:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- ✅ Weather service API calls and error handling
+- ✅ Component rendering and user interactions
+- ✅ Loading and error states
+- ✅ Weather icon rendering for all conditions
+- ✅ Data transformation and display
+- ✅ Input validation and edge cases
+
+### Test Structure
+
 ```
+src/
+├── test/
+│   ├── setup.ts              # Test configuration
+│   ├── utils.tsx             # Test utilities
+│   └── mocks/
+│       └── weatherData.ts    # Mock data
+├── components/__tests__/
+│   ├── WeatherCard.test.tsx
+│   └── WeatherIcon.test.tsx
+├── services/__tests__/
+│   └── weatherService.test.ts
+├── types/__tests__/
+│   └── weather.test.ts
+└── __tests__/
+    └── App.test.tsx
+```
+
+### Testing Tools
+
+- **Vitest** - Fast unit test framework
+- **React Testing Library** - Component testing utilities
+- **@testing-library/user-event** - User interaction simulation
+- **@testing-library/jest-dom** - Custom matchers
