@@ -42,7 +42,7 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
@@ -81,7 +81,7 @@ export const App: React.FC = () => {
             flex={1}
             value={city}
             onChange={(e) => setCity(e.currentTarget.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             leftSection={<IconSearch size={20} />}
             styles={{
               input: {
